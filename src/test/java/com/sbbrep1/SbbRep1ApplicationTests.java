@@ -10,7 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest
 class SbbRep1ApplicationTests {
@@ -77,6 +78,13 @@ class SbbRep1ApplicationTests {
     @Test
     @DisplayName("부분 문자열 찾기 LIKE 사용")
     void t6(){
+        String target = "OCP";
+        List<Question> qList = this.questionRepository.findBySubjectLike(target);
 
+        for(Question q : qList){
+            assertTrue(q.getContent().contains(target));
+        }
     }
+
+
 }
