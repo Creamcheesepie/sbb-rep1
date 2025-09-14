@@ -1,7 +1,7 @@
 package com.sbbrep1;
 
-import com.sbbrep1.sbb.Question;
-import com.sbbrep1.sbb.QuestionRepository;
+import com.sbbrep1.sbb.question.Question;
+import com.sbbrep1.sbb.question.QuestionRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

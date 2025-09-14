@@ -1,5 +1,6 @@
-package com.sbbrep1.sbb;
+package com.sbbrep1.sbb.question;
 
+import com.sbbrep1.sbb.answer.Answer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
