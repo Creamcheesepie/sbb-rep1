@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-class SbbRep1ApplicationTests {
+class QuestionTest {
 
     @Autowired
     private QuestionRepository questionRepository;
@@ -26,8 +26,7 @@ class SbbRep1ApplicationTests {
     @Test
     @DisplayName("질문 데이터 저장하기")
     void t1() {
-        long cnt = questionRepository.count();
-        if(cnt > 0) return ;
+
         Question q1 = new Question("질문을 합니다","프로그래밍은 즐거운가요?");
         Question q2 = new Question("OCP 원칙에 대해","OCP 원칙이 어렵습니다. 예시를 잘 알려주세요");
         Question q3 = new Question("수정용 데이터 입니다.","내용을 수정해 주세요.");
@@ -91,13 +90,21 @@ class SbbRep1ApplicationTests {
 
     @Test
     @DisplayName("질문 데이터 수정하기")
-    void t7(){
-        Long id = 2L;
-        Optional<Question> oq = this.questionRepository.findById(0L);
+    void t7() {
+        Optional<Question> oq = this.questionRepository.findById(2L);
         assertTrue(oq.isPresent());
         Question q = oq.get();
         q.setSubject("수정한 제목입니다.");
         this.questionRepository.save(q);
+    }
+
+    @Test
+    @DisplayName("질문 데이터 삭제하기")
+    void t8(){
+        long beforeSize = this.questionRepository.count();
+        this.questionRepository.deleteById(3L);
+        long afterSize = this.questionRepository.count();
+        assertEquals(beforeSize - 1, afterSize);
     }
 
 }
