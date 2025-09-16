@@ -2,6 +2,7 @@ package com.sbbrep1;
 
 import com.sbbrep1.sbb.question.Question;
 import com.sbbrep1.sbb.question.QuestionRepository;
+import com.sbbrep1.sbb.question.QuestionService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @SpringBootTest
@@ -18,6 +20,9 @@ class QuestionTest {
 
     @Autowired
     private QuestionRepository questionRepository;
+
+    @Autowired
+    private QuestionService questionService;
 
     @Test
     void contextLoads() {
@@ -106,5 +111,7 @@ class QuestionTest {
         long afterSize = this.questionRepository.count();
         assertEquals(beforeSize - 1, afterSize);
     }
+
+
 
 }
