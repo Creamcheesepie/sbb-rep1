@@ -1,6 +1,7 @@
 package com.sbbrep1.sbb.question;
 
 import com.sbbrep1.sbb.DataNotFoundException;
+import com.sbbrep1.sbb.answer.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,8 @@ public class QuestionController {
     @GetMapping("/detail/{id}")
     public String detail(
             Model model,
-            @PathVariable Long id
+            @PathVariable Long id,
+            AnswerForm answerForm
     ) throws DataNotFoundException {
         Question question = this.questionService.getQuestionByid(id);
         model.addAttribute("question",question);
@@ -34,7 +36,8 @@ public class QuestionController {
     }
 
     @GetMapping("/create")
-    public String questionForm(){
+    public String questionForm(
+    ){
         return "question_form";
     }
 
@@ -43,6 +46,9 @@ public class QuestionController {
             @Valid QuestionForm questionForm, BindingResult bindingResult
 
     ){
+        if(bindingResult.hasErrors()){
+            return "question_form";
+        }
         questionService.createQuestion(questionForm.getSubject(),questionForm.getContent());
         return "redirect:/question/list";
     }
